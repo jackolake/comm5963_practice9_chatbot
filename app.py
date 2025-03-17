@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect, session, flash
 from flask_session import Session
 import ollama
 
@@ -35,8 +35,14 @@ def chat():
 
 @app.route('/clear_session')
 def clear_session():
-    # Clear then go back to main page
-    session.clear()
+    if 'history' in session:
+        # Alternatively: session.clear() can clear everything
+        session.pop('history')
+        # Optionally: create a pop-up message (see "Flash message handler" in layout.html)
+        flash(message='Session cleared', category='success')
+    else:
+        flash(message='Nothing to clear', category='danger')
+    # Go back to main page
     return redirect(url_for('chat'))
 
 if __name__ == '__main__':

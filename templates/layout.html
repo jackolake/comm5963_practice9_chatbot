@@ -6,6 +6,15 @@
 </head>
 <body>
 <div class="container-sm p-3">
+    <!-- [Optional] Flash message handler -->
+    {% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        <!-- The popup message-->
+        {{ msg }}
+        <!-- Close button -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
     <!-- Nav Bar -->
     <nav class="navbar navbar-light bg-light p-3">
         <a class="navbar-brand" href="#">
@@ -23,6 +32,7 @@
         <div class="card-footer"><h5>Copyright 2025</h5></div>
     </div>
 </div>
+<script src="/js/bootstrap.js"></script>
 </body>
 </html>
 
