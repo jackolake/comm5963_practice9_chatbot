@@ -1,0 +1,4 @@
+ollama
+Flask
+Flask-Session
+Werkzeug
